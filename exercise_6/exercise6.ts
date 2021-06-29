@@ -58,9 +58,9 @@ export function logPerson(person: Person) {
     );
 }
 
-export function filterPersons(persons: Person[], personType: string, criteria: Partial<Person>): User[];
+export function filterPersons(persons: Person[], personType: 'user', criteria: Partial<Person>): User[];
 
-export function filterPersons(persons: Person[], personType: string, criteria: Partial<Person>): Admin[];
+export function filterPersons(persons: Person[], personType: 'admin', criteria: Partial<Person>): Admin[];
 
 export function filterPersons(persons: Person[], personType: string, criteria: Partial<Person>): Person[] {
     let myPersons = persons
@@ -90,34 +90,5 @@ export const adminsOfAge23 = filterPersons(persons, 'admin', { age: 23 });
 console.log('Users of age 23:');
 usersOfAge23.forEach(logPerson);
 
-console.log('Admins of age 23:');
+console.log('Admins of age 23:' );
 adminsOfAge23.forEach(logPerson);
-
-
-// Check if my updated filterPersons can take an array of User or Admin as well...
-// This seems to work as expected!
-
-export const dialUsers: User[] = [
-    { type: 'user', name: 'Chris Dial', age: 41, occupation: 'Engineer' },
-    { type: 'user', name: 'Alex Dial', age: 39, occupation: 'Circus Performer' },
-];
-
-export const dialAdmins: Admin[] = [
-    { type: 'admin', name: 'Traci Dial', age: 36, role: 'Mother' },
-    { type: 'admin', name: 'Nick Dial', age: 39, role: 'EMT' },
-];
-
-
-export const dialUsersOfAge39 = filterPersons(dialUsers, 'user', { age: 39 });
-export const dialAdminsOfAge39 = filterPersons(dialAdmins, 'admin', { age: 39 });
-
-console.log('DialUsers of age 39:');
-dialUsersOfAge39.forEach(logPerson);
-
-console.log('DialAdmins of age 39:');
-dialAdminsOfAge39.forEach(logPerson);
-
-
-
-// In case if you are stuck:
-// https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads

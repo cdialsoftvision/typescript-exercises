@@ -28,7 +28,7 @@ Higher difficulty bonus exercise:
 
 */
 exports.__esModule = true;
-exports.dialAdminsOfAge39 = exports.dialUsersOfAge39 = exports.dialAdmins = exports.dialUsers = exports.adminsOfAge23 = exports.usersOfAge23 = exports.filterPersons = exports.logPerson = exports.persons = void 0;
+exports.janeAdmin = exports.usersOfAnyAge = exports.adminsOfAge23 = exports.usersOfAge23 = exports.filterPersons = exports.logPerson = exports.persons = void 0;
 exports.persons = [
     { type: 'user', name: 'Max Mustermann', age: 25, occupation: 'Chimney sweep' },
     { type: 'admin', name: 'Jane Doe', age: 32, role: 'Administrator' },
@@ -50,7 +50,7 @@ function filterPersons(persons, personType, criteria) {
             return person[fieldName] === criteria[fieldName];
         });
     });
-    // My console.logs 
+    // Some debug here to make sure that the type I expect is being returned, it seems to be working
     if (personType == 'user') {
         console.log('returning user array');
         return myPersons;
@@ -62,27 +62,21 @@ function filterPersons(persons, personType, criteria) {
     return myPersons;
 }
 exports.filterPersons = filterPersons;
+console.log();
 exports.usersOfAge23 = filterPersons(exports.persons, 'user', { age: 23 });
-exports.adminsOfAge23 = filterPersons(exports.persons, 'admin', { age: 23 });
 console.log('Users of age 23:');
 exports.usersOfAge23.forEach(logPerson);
+console.log();
+exports.adminsOfAge23 = filterPersons(exports.persons, 'admin', { age: 23 });
 console.log('Admins of age 23:');
 exports.adminsOfAge23.forEach(logPerson);
-// Check if my updated filterPersons can take an array of User or Admin as well...
-// This seems to work as expected!
-exports.dialUsers = [
-    { type: 'user', name: 'Chris Dial', age: 41, occupation: 'Engineer' },
-    { type: 'user', name: 'Alex Dial', age: 39, occupation: 'Circus Performer' },
-];
-exports.dialAdmins = [
-    { type: 'admin', name: 'Traci Dial', age: 36, role: 'Mother' },
-    { type: 'admin', name: 'Nick Dial', age: 39, role: 'EMT' },
-];
-exports.dialUsersOfAge39 = filterPersons(exports.dialUsers, 'user', { age: 39 });
-exports.dialAdminsOfAge39 = filterPersons(exports.dialAdmins, 'admin', { age: 39 });
-console.log('DialUsers of age 39:');
-exports.dialUsersOfAge39.forEach(logPerson);
-console.log('DialAdmins of age 39:');
-exports.dialAdminsOfAge39.forEach(logPerson);
-// In case if you are stuck:
-// https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
+console.log();
+exports.usersOfAnyAge = filterPersons(exports.persons, 'user', {});
+console.log('Users of any age:');
+exports.usersOfAnyAge.forEach(logPerson);
+console.log("my object: $o", exports.usersOfAnyAge);
+console.log();
+exports.janeAdmin = filterPersons(exports.persons, 'admin', { name: 'Jane Doe', age: 32, role: 'Administrator' });
+console.log('Jane: ');
+exports.janeAdmin.forEach(logPerson);
+console.log("my object: $o", exports.janeAdmin);
